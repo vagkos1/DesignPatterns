@@ -8,6 +8,10 @@ namespace RefactoringGuru\Strategy\RealWorld;
  * receives a payment request, the OrderController class also decides which
  * payment method it should use to process the request. Thus, the class acts as
  * the Context and the Client at the same time.
+ *
+ * Since this is the context class it could hold a reference to PaymentMethod, but I
+ * guess the orderController is not instantiated by the client to the payment method can
+ * just be passed to the specific functions that need it instead.
  */
 class OrderController
 {
@@ -318,8 +322,8 @@ echo "\nClient: I'd like to pay for the second, show me the payment form\n";
 $controller->get("/order/1/payment/paypal");
 
 echo "\nClient: ...pushes the Pay button...\n";
-echo "\nClient: Oh, I'm redirected to the PayPal.\n";
-echo "\nClient: ...pays on the PayPal...\n";
+echo "\nClient: Oh, I'm redirected to PayPal.\n";
+echo "\nClient: ...pays on PayPal...\n";
 echo "\nClient: Alright, I'm back with you, guys.\n";
 
 $controller->get("/order/1/payment/paypal/return" .
